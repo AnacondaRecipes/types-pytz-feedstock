@@ -9,18 +9,18 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/types-pytz-{{ version }}.tar.gz
   sha256: 47cfb19c52b9f75896440541db392fd312a35b279c6307a531db71152ea63e2b
+  skip: True # [py<36]
 
 build:
   number: 0
-  noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python
   run:
-    - python >=3.6
+    - python
 
 test:
   commands:
