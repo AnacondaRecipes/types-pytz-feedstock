@@ -9,11 +9,11 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/types-pytz-{{ version }}.tar.gz
   sha256: 17d66e4b16e80ceae0787726f3a22288df7d3f9fdebeb091dc64b92c0e4ea09d
-  skip: True # [py<36]
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
+  skip: True # [py<36]
 
 requirements:
   host:
