@@ -35,6 +35,7 @@ about:
   home: https://github.com/python/typeshed
   summary: Typing stubs for pytz
   license: Apache-2.0 AND MIT
+  license_family: Other
   license_file: LICENSE
   dev_url: https://github.com/python/typeshed
   doc_url: https://typing.readthedocs.io/en/latest
