@@ -1,26 +1,24 @@
 {% set name = "types-pytz" %}
-{% set version = "2022.4.0.0" %}
-
+{% set version = "2025.2.0.20250809" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/types-pytz-{{ version }}.tar.gz
-  sha256: 17d66e4b16e80ceae0787726f3a22288df7d3f9fdebeb091dc64b92c0e4ea09d
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/types_pytz-{{ version }}.tar.gz
+  sha256: 222e32e6a29bb28871f8834e8785e3801f2dc4441c715cd2082b271eecbe21e5
 
 build:
-  number: 1
-  script: {{ PYTHON }} -m pip install . -vv
-  skip: True # [py<37]
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<39]
 
 requirements:
   host:
     - pip
     - python
-    - setuptools
-    - wheel
+    - setuptools >=77.0.3
   run:
     - python
 
@@ -29,9 +27,9 @@ test:
     - pip
   commands:
     - pip check
-    - test -f $SP_DIR/pytz-stubs/__init__.pyi # [not win]
-    - if not exist %SP_DIR%\pytz-stubs\__init__.pyi exit 1 # [win]
-
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - test -f $SP_DIR/pytz-stubs/__init__.pyi  # [not win]
+    - if not exist %SP_DIR%\pytz-stubs\__init__.pyi exit 1  # [win]
 
 about:
   home: https://github.com/python/typeshed
@@ -39,7 +37,7 @@ about:
   license: Apache-2.0 AND MIT
   license_file: LICENSE
   dev_url: https://github.com/python/typeshed
-  doc_url: https://typing.readthedocs.io/en/latest/
+  doc_url: https://typing.readthedocs.io/en/latest
 
 extra:
   recipe-maintainers:
