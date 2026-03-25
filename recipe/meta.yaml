@@ -1,5 +1,5 @@
 {% set name = "types-pytz" %}
-{% set version = "2025.2.0.20250809" %}
+{% set version = "2026.1.1.20260304" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 222e32e6a29bb28871f8834e8785e3801f2dc4441c715cd2082b271eecbe21e5
+  sha256: 0c3542d8e9b0160b424233440c52b83d6f58cae4b85333d54e4f961cf013e117
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: true  # [py<39]
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -33,14 +33,17 @@ test:
 
 about:
   home: https://github.com/python/typeshed
-  summary: Typing stubs for pytz
+  summary: This is a type stub package for the pytz package. It can be used by type checkers to check code that uses pytz.
+  description: This is a type stub package for the pytz package. It can be used by type checkers to check code that uses pytz.
   license: Apache-2.0 AND MIT
   license_family: Other
   license_file: LICENSE
   dev_url: https://github.com/python/typeshed
-  doc_url: https://typing.readthedocs.io/en/latest
+  doc_url: https://typing.python.org
 
 extra:
   recipe-maintainers:
     - fhoehle
     - conda-forge/mypy
+  skip-lints:
+    - missing_imports_or_run_test_py
